@@ -1,6 +1,6 @@
 # Usage:
 - You will need docker and docker compose installed for this project.
-- You will also need to supply env vars for this project in the form of a .env file. These should be supplied in the following format, and are required:
+- You will also need to supply env vars for this project in the form of a .env file. These are required, below is an example .env file with all required entries:
     ````
     GIN_MODE=debug
     PORT=80
