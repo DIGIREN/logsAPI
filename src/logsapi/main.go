@@ -177,6 +177,8 @@ func sendBatchIfSizeMet() error {
 	return nil
 }
 
+//Sends a batch of logs to the remote endpoint, terminates the server if the request fails
+//Logs the request details to our external POST_ENDPOINT
 func sendBatch() error {
 	duration, responseCode, err := sendAllLogsToEndpoint()
 	if err != nil {
@@ -203,7 +205,7 @@ func initRequiredVar(varString string, defaultVal string) string {
 			logger.Infof(varString, "is not set, using default value", defaultVal[0])
 			envValue = defaultVal
 		} else {
-			logger.Fatal(varString, "is not set, and invalid default value was not provided")
+			logger.Fatal(varString, "is not set, and valid default value was not provided")
 		}
 	} else {
 		envValue = os.Getenv(varString)
