@@ -38,11 +38,24 @@ func main() {
 		err := storeLogInCache(log)
 		if err != nil {
 			ctx.JSON(500, gin.H{"error": err.Error()})
-			logger.Warnw("Failed to store log",
+			logger.Fatalw("Failed to store log.",
 				"error", err.Error(),
+				"ip", ctx.ClientIP(),
+				"method", ctx.Request.Method,
+				"url", ctx.Request.URL,
+				"user_agent", ctx.Request.UserAgent(),
+				"referer", ctx.Request.Referer(),
+				"remote_addr", ctx.Request.RemoteAddr,
 			)
 			return
 		} else {
+			logger.Infow("Stored log successfully.",
+				"ip", ctx.ClientIP(),
+				"method", ctx.Request.Method,
+				"url", ctx.Request.URL,
+				"user_agent", ctx.Request.UserAgent(),
+				"remote_addr", ctx.Request.RemoteAddr,
+			)
 			ctx.JSON(200, gin.H{"success": "Log successfully stored"})
 		}
 		err = sendBatchIfSizeMet()
@@ -54,6 +67,13 @@ func main() {
 	})
 
 	server.GET("/healthz", func(ctx *gin.Context) {
+		logger.Infow("User requested service health:",
+			"ip", ctx.ClientIP(),
+			"method", ctx.Request.Method,
+			"url", ctx.Request.URL,
+			"user_agent", ctx.Request.UserAgent(),
+			"remote_addr", ctx.Request.RemoteAddr,
+		)
 		ctx.Header("Content-Type", "text/plain")
 		ctx.String(200, "OK")
 	})
