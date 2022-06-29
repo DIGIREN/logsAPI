@@ -15,7 +15,7 @@
     Explanation of variables:
     - GIN_MODE: The mode of the gin server. Valid values are debug, release.
     - PORT: The port the gin server will listen on
-    - CHECK_FREQUENCY: How often will the background listener check to see if the BATCH_INTERVAL has been met
+    - CHECK_FREQUENCY: How often will the background listener check to see if the BATCH_INTERVAL has been met (in seconds)
     - BATCH_SIZE: The number of logs to send in a batch
     - BATCH_INTERVAL: The number of seconds to wait before sending a batch of logs
     - MAX_RETRIES: The number of times to retry a failed batch
