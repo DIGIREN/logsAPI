@@ -192,7 +192,7 @@ func sendBatch() error {
 	return nil
 }
 
-//Will load a required env var as a string or int
+//Will load a required env var as a string
 //will fail critically if these are not set & no defaults are passed, as they are required for runtime
 //varString (string) - the name of the env var to load
 //defaultVal (string) the default value to use if the env var is not set
